@@ -58,3 +58,47 @@ ref. [yuki氏のツイート](https://twitter.com/helloyuki_/status/207740967593
     * 計算：入力から出力への計算処理。純粋関数、数学的関数とも呼ばれます。例：最大値の算出、メールアドレスの形式チェックなど。
     * データ：イベントに関する事実情報。例：ユーザーが入力したメールアドレス、銀行のAPIから取得した金額など。
 ```
+
+## AI向けコマンドラインツール
+
+```markdown
+## Command-line tools
+
+### Installed tools
+
+The following are installed in this environment. Prefer them over the standard Unix equivalents.
+
+- `ast-grep` — Syntax-aware code search and rewriting. Use when regex is too fragile. See the ast-grep skill for rule syntax.
+- `sem` — Entity-level diff, blame, and impact analysis (functions, classes). Use instead of `git diff` and `git blame`. See the sem skill for details.
+- `ax` — HTTP fetching and HTML extraction. Use instead of `curl` plus a throwaway parsing script. Run `ax agent-context` to learn it.
+
+### Rules that override your defaults
+
+- Before changing or removing a function signature, always check the blast radius with `sem impact`.
+- When reporting how much changed, do not count `+`/`-` lines from `git diff`. Use the entity counts from `sem diff`.
+- When an `ast-grep` pattern fails to match, do not guess at rewrites. Dump the parsed AST with `ast-grep run --lang <lang> --pattern '<pattern>' --debug-query=ast` (`--lang` is required), then fix the pattern.
+- Before reading a large source file in full, get its structure with `ast-grep outline <path>`.
+- When working with HTML or an API, reach for `ax` before writing a Python or Node script.
+```
+
+日本語訳:
+
+```markdown
+## コマンドラインツール
+
+### インストール済みツール
+
+この環境には以下のツールがインストールされています。標準のUnix製コマンドよりもこれらを優先して使用してください。
+
+- `ast-grep` — 構文を認識したコード検索および書き換え。正規表現ではもろすぎる場合に使用します。ルール構文については ast-grep スキルを参照してください。
+- `sem` — エンティティ単位の diff、blame、影響分析（関数、クラスなど）。`git diff` や `git blame` の代わりに使用します。詳細は sem スキルを参照してください。
+- `ax` — HTTPフェッチおよびHTML抽出。使い捨ての解析スクリプトと `curl` の組み合わせの代わりに使用します。使い方を学ぶには `ax agent-context` を実行してください。
+
+### デフォルトの動作を上書きするルール
+
+- 関数のシグネチャを変更または削除する前に、必ず `sem impact` で影響範囲（ブラストradius）を確認してください。
+- 変更規模を報告する際は、`git diff` による `+`/`-` の行数を数えないでください。代わりに `sem diff` のエンティティ数を使用してください。
+- `ast-grep` のパターンが一致しない場合は、書き換えを推測で行わないでください。`ast-grep run --lang <lang> --pattern '<pattern>' --debug-query=ast`（`--lang` は必須）で解析済みの AST を出力してから、パターンを修正してください。
+- 大きなソースファイルを丸ごと読み込む前に、`ast-grep outline <path>` でその構造を取得してください。
+- HTMLやAPIを扱う場合は、PythonやNodeのスクリプトを書く前に `ax` を活用してください。
+```
