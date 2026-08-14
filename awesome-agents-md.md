@@ -30,6 +30,8 @@
 - 関数や構造体、その他意味のあるコードのまとまりには、必ず**日本語で**その意味を説明するコメントを付記すること
 ```
 
+これについては [ponytail](https://ponytail.dev/) を使ってみることにする。
+
 ## 関数型プログラミングスタイルの採用
 
 ref. [yuki氏のツイート](https://twitter.com/helloyuki_/status/2077409675931439272)
@@ -37,12 +39,13 @@ ref. [yuki氏のツイート](https://twitter.com/helloyuki_/status/207740967593
 ```markdown
 # General Coding Guide
 
-* Please do not worry about backward compatibility until I provide further instructions.
-  * Prefer to make data immutable.
-  * Specify three components: Actions, Calculation, Data (This principle is written in the book "Grokking Simplicity"). Specifically, carefully isolate Actions.
-    * Actions: Depend on how many times or when it is run. Also called functions with side-effects, side-effecting functions, impure functions. Examples: Send an email, read from a database, including I/O operations.
-    * Calculations: Computations from input to output. Also called pure functions, mathematical functions. Examples: Find the maximum number, check if an email address is valid.
-    * Data: Facts about events. Examples: The email address a user gave us, the dollar amount read from a bank's API.
+- Please do not worry about backward compatibility until I provide further instructions.
+- Follow functional programming style.
+  - Prefer to make data immutable.
+  - Specify three components: Actions, Calculation, Data (This principle is written in the book "Grokking Simplicity"). Specifically, carefully isolate Actions.
+    - Actions: Depend on how many times or when it is run. Also called functions with side-effects, side-effecting functions, impure functions. Examples: Send an email, read from a database, including I/O operations.
+    - Calculations: Computations from input to output. Also called pure functions, mathematical functions. Examples: Find the maximum number, check if an email address is valid.
+    - Data: Facts about events. Examples: The email address a user gave us, the dollar amount read from a bank's API.
 ```
 
 日本語訳:
@@ -101,4 +104,30 @@ The following are installed in this environment. Prefer them over the standard U
 - `ast-grep` のパターンが一致しない場合は、書き換えを推測で行わないでください。`ast-grep run --lang <lang> --pattern '<pattern>' --debug-query=ast`（`--lang` は必須）で解析済みの AST を出力してから、パターンを修正してください。
 - 大きなソースファイルを丸ごと読み込む前に、`ast-grep outline <path>` でその構造を取得してください。
 - HTMLやAPIを扱う場合は、PythonやNodeのスクリプトを書く前に `ax` を活用してください。
+```
+
+## コード量を減らす
+
+ref. [Next.jsの開発者のツイート](https://twitter.com/MarcosHernanz/status/2083954734487212511)
+
+```markdown
+- Do not preserve backward compatibility. Remove obsolete paths instead of adding compatibility layers, fallbacks, or migrations.
+- Choose the simplest implementation that fully meets the current requirements. Avoid speculative abstractions, configuration, and indirection.
+- Grow the system in layers. Start from the smallest version that works end to end, and add each new capability on top of a product that already works. Never trade a working product for unfinished complexity.
+- Keep components modular and concerns clearly separated.
+- Prefer established, well-maintained libraries when they reduce overall complexity or improve reliability. Do not reimplement common functionality without a clear reason.
+- Lean on the dependencies already in the project before writing your own implementation or adding packages. Do not assume a library lacks a capability without checking its documentation and types.
+- Make architectural decisions for the long term. Do not accept a stopgap that only works for now and is meant to be replaced later.
+```
+
+日本語訳:
+
+```markdown
+- 後方互換性を維持しないこと。 互換性レイヤーやフォールバック、移行処理（マイグレーション）を追加するのではなく、不要になった古いコードパスは削除してください。
+- 現在の要件を完全に満たす、最もシンプルな実装を選択すること。先回りした抽象化、設定の過剰な追加、不要な間接化は避けてください。
+- システムをレイヤー状に成長させること。エンドツーエンドで動作する最小限のバージョンから着手し、すでに動いているプロダクトの上に新しい機能を1つずつ積み上げてください。動作している成果物を犠牲にして、未完成で複雑なものに手を出してはいけません。
+- コンポーネントをモジュール化し、関心事を明確に分離すること。
+* 全体の複雑さを軽減できる場合や信頼性を高められる場合は、実績があり適切に保守されているライブラリを優先すること。明確な理由がない限り、一般的な機能を自作しないでください。
+- 独自実装を行ったり新規パッケージを追加したりする前に、プロジェクトに導入済みの既存ライブラリを活用すること。ドキュメントや型定義を確認する前に「そのライブラリに機能が存在しない」と決めつけないでください。
+- 長期的な視点でアーキテクチャの意思決定を行うこと。「今だけ動けばよく、後で置き換える前提」のような、場当たり的な対症療法を受け入れてはいけません。
 ```
