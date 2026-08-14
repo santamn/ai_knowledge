@@ -3,6 +3,8 @@
 ## AGENTS.md
 
 ```markdown
+## General Coding Guide
+
 - Do not preserve backward compatibility. Remove obsolete paths instead of adding compatibility layers, fallbacks, or migrations.
 - Grow the system in layers. Start from the smallest version that works end to end, and add each new capability on top of a product that already works. Never trade a working product for unfinished complexity.
 - Keep components modular and concerns clearly separated.
@@ -13,15 +15,38 @@
     - Calculations: Computations from input to output. Also called pure functions, mathematical functions. Examples: Find the maximum number, check if an email address is valid.
     - Data: Facts about events. Examples: The email address a user gave us, the dollar amount read from a bank's API.
 - Always attach comments **in Japanese** explaining the meaning of functions, structs, and any other semantically cohesive pieces of code
-```
 
-これに加えて [AI向けツールの存在を示す記述](./awesome-agents-md.md#ai向けコマンドラインツール) も書いておく。
+## Command-line tools
+
+### Installed tools
+
+The following are installed in this environment. Prefer them over the standard Unix equivalents.
+
+- `ast-grep` — Syntax-aware code search and rewriting. Use when regex is too fragile. See the ast-grep skill for rule syntax.
+- `ax` — HTTP fetching and HTML extraction. Use instead of `curl` plus a throwaway parsing script. Run `ax agent-context` to learn it.
+- `fd` — File and directory search. Use instead of `find`.
+- `rg` (ripgrep) — Text and regex search. Use instead of `grep -r`.
+- `sem` — Entity-level diff, blame, and impact analysis (functions, classes). Use instead of `git diff` and `git blame`. See the sem skill for details.
+
+### Rules that override your defaults
+
+- Before changing or removing a function signature, always check the blast radius with `sem impact`.
+- When reporting how much changed, do not count `+`/`-` lines from `git diff`. Use the entity counts from `sem diff`.
+- When an `ast-grep` pattern fails to match, do not guess at rewrites. Dump the parsed AST with `ast-grep run --lang <lang> --pattern '<pattern>' --debug-query=ast` (`--lang` is required), then fix the pattern.
+- Before reading a large source file in full, get its structure with `ast-grep outline <path>`.
+- When working with HTML or an API, reach for `ax` before writing a Python or Node script.
+```
 
 ## Skills
 
 - sem
 - ast-grep
+- [caveman](https://caveman.so/products/caveman)
 
 ## Plugins
 
 - [ponytail](https://ponytail.dev/)
+
+## MCP
+
+- [Serena](https://oraios.github.io/serena/01-about/000_intro.html)
