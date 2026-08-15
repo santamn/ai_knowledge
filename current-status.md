@@ -3,6 +3,10 @@
 ## AGENTS.md
 
 ```markdown
+## General Writing Guide
+
+- Do not hard wrap prose. Insert line breaks only between paragraphs — never mid-paragraph to constrain visual line width. Let the display handle soft wrapping.
+
 ## General Coding Guide
 
 - Do not preserve backward compatibility. Remove obsolete paths instead of adding compatibility layers, fallbacks, or migrations.
