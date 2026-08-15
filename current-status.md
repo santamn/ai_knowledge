@@ -6,14 +6,9 @@
 ## General Coding Guide
 
 - Do not preserve backward compatibility. Remove obsolete paths instead of adding compatibility layers, fallbacks, or migrations.
-- Grow the system in layers. Start from the smallest version that works end to end, and add each new capability on top of a product that already works. Never trade a working product for unfinished complexity.
-- Keep components modular and concerns clearly separated.
 - Follow functional programming style.
   - Prefer to make data immutable.
   - Specify three components: Actions, Calculation, Data (This principle is written in the book "Grokking Simplicity"). Specifically, carefully isolate Actions.
-    - Actions: Depend on how many times or when it is run. Also called functions with side-effects, side-effecting functions, impure functions. Examples: Send an email, read from a database, including I/O operations.
-    - Calculations: Computations from input to output. Also called pure functions, mathematical functions. Examples: Find the maximum number, check if an email address is valid.
-    - Data: Facts about events. Examples: The email address a user gave us, the dollar amount read from a bank's API.
 - Always attach comments **in Japanese** explaining the meaning of functions, structs, and any other semantically cohesive pieces of code
 
 ## Command-line tools
@@ -32,7 +27,6 @@ The following are installed in this environment. Prefer them over the standard U
 
 - Before changing or removing a function signature, always check the blast radius with `sem impact`.
 - When reporting how much changed, do not count `+`/`-` lines from `git diff`. Use the entity counts from `sem diff`.
-- When an `ast-grep` pattern fails to match, do not guess at rewrites. Dump the parsed AST with `ast-grep run --lang <lang> --pattern '<pattern>' --debug-query=ast` (`--lang` is required), then fix the pattern.
 - Before reading a large source file in full, get its structure with `ast-grep outline <path>`.
 - When working with HTML or an API, reach for `ax` before writing a Python or Node script.
 ```
@@ -43,7 +37,7 @@ The following are installed in this environment. Prefer them over the standard U
 - ast-grep
 - [caveman](https://caveman.so/products/caveman)
 
-## Plugins
+## Rules
 
 - [ponytail](https://ponytail.dev/)
 
