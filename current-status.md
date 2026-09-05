@@ -6,6 +6,7 @@
 ## General Writing Guide
 
 - Do not hard wrap prose. Insert line breaks only between paragraphs — never mid-paragraph to constrain visual line width. Let the display handle soft wrapping.
+- Use the stop-ai-slop-jp skill when writing or editing Japanese text
 
 ## General Coding Guide
 

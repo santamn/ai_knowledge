@@ -11,3 +11,5 @@
   curl -fsSL https://ataraxy-labs.github.io/sem/llms.txt -o ~/.claude/skills/sem/SKILL.md
   ```
 - [caveman](https://caveman.so/products/caveman)
+- [humanizer](https://github.com/blader/humanizer)
+- [stop-ai-slop-jp](https://github.com/iKora128/stop-ai-slop-jp)
