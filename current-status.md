@@ -41,10 +41,21 @@ The following are installed in this environment. Prefer them over the standard U
 - sem
 - ast-grep
 - [caveman](https://caveman.so/products/caveman)
+- Claude 公式のスキル: とりあえず入れてるけど、効果のほどはよくわかっていない
+  - claude-md-management
+  - code-review
+  - code-simplifier
+  - github
+  - skill-creator
+  - superpowers
 
 ## Rules
 
 - [ponytail](https://ponytail.dev/)
+
+## Hooks
+
+- [markdownlint-cli](https://github.com/markdownlint/markdownlint)
 
 ## MCP
 
